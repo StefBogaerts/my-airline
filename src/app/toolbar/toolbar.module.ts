@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
 
-import { ToolbarComponent } from './toolbar.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AppRoutingModule } from '../app-routing.module';
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
+    MatTooltipModule
   ],
   exports: [ToolbarComponent]
 })

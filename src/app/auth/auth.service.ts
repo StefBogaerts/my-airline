@@ -4,6 +4,9 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
+    /** A fake JWT response. */
+     fakeJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
     /** Whether the user is logged in. */
     get isAuthenticated() {
         return this.getToken() != null;
@@ -22,7 +25,7 @@ export class AuthService {
     login(email: string, password: string) {
         const fakeResponse = {
             authenticated: true,
-            token: '123',
+            token: this.fakeJWT,
             user: {
                 name: 'John',
                 surname: 'Doe',

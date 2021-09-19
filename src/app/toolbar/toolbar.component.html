@@ -12,8 +12,14 @@
 
   <div class="button-spacer"></div>
 
-  <button routerLink="/logout" mat-button>
+  <button *ngIf="isLoggedIn; else login" routerLink="/logout" mat-button matTooltip="Logout">
     <i class="fa fa-sign-out"></i>
   </button>
+
+  <ng-template #login>
+    <button  routerLink="/login" mat-button>
+      Login
+    </button>
+  </ng-template>
 
 </mat-toolbar>
