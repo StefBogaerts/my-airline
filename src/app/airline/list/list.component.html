@@ -1,0 +1,96 @@
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Search</mat-label>
+  <input matInput [formControl]="searchControl" placeholder="Name of airline">
+</mat-form-field>
+
+<ng-container *ngTemplateOutlet="useList ? list : table"></ng-container>
+
+<mat-paginator *ngIf="amountOfAirlines > pageSize" [length]="amountOfAirlines" [pageSize]="pageSize"
+  [hidePageSize]="true" (page)="retrievePageData()" aria-label="Select page" showFirstLastButtons="true"
+  color="primary">
+</mat-paginator>
+
+<!-- TABLE (desktop) TEMPLATE -->
+<ng-template #table>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fixedLayout="true">
+    <!-- functions Column -->
+    <ng-container matColumnDef="functions">
+      <th mat-header-cell *matHeaderCellDef>
+        <button mat-raised-button (click)="openCreate()" matTooltip="Create a new airline">
+          <i class="fa fa-plus new-icon"></i> New
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let airline">
+        <button mat-icon-button (click)="openDetails(airline)" class="fa fa-table"
+          [matTooltip]="'Details about ' + airline.name"></button>
+        <button (click)="openUpdate(airline)" mat-icon-button class="fa fa-edit"
+          [matTooltip]="'Update ' + airline.name"></button>
+        <button (click)="deleteAirline(airline)" mat-icon-button color="warn" class="fa fa-trash"
+          [matTooltip]="'Delete ' + airline.name"></button>
+      </td>
+    </ng-container>
+
+    <!-- Logo Column -->
+    <ng-container matColumnDef="logo">
+      <th mat-header-cell *matHeaderCellDef> Logo </th>
+      <td mat-cell *matCellDef="let airline">
+        <img [src]="airline.logo" class="airline-logo" />
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let airline"> {{airline.name}} </td>
+    </ng-container>
+
+    <!-- Slogan Column -->
+    <ng-container matColumnDef="slogan">
+      <th mat-header-cell *matHeaderCellDef> Slogan </th>
+      <td mat-cell *matCellDef="let airline"> {{airline.slogan}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>
+
+<!-- LIST (mobile) TEMPLATE -->
+<ng-template #list>
+  <button style="display: block; margin-bottom: 8px;" mat-raised-button (click)="openCreate()"
+    matTooltip="Create a new airline">
+    <i class="fa fa-plus new-icon"></i> New
+  </button>
+
+  <!-- Expension panels -->
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let airline of dataSource | async" class="panel-wrapper" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> <img class="airline-logo" [src]="airline.logo" /> </mat-panel-title>
+        <mat-panel-description>
+          {{airline.name}}
+          <button mat-icon-button [matMenuTriggerFor]="functionMenu" [matMenuTriggerData]="airline"
+            (click)="$event.stopPropagation();" class="fa fa-ellipsis-v"></button>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <h2>Name</h2>
+      <p [innerHTML]="airline.name"></p>
+
+      <h2>Slogan</h2>
+      <p [innerHTML]="airline.slogan"></p>
+
+      <!-- Function Menu -->
+      <mat-menu #functionMenu="matMenu">
+        <button mat-menu-item (click)="openUpdate(airline)">
+          <i class="fa fa-edit menu-item-icon"></i>
+          <span>Update</span>
+        </button>
+        <button mat-menu-item (click)="deleteAirline(airline)">
+          <i class="fa fa-trash menu-item-icon"></i>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>

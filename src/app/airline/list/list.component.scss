@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+}
+
+.loader {
+    left: 50%
+}
+
+.new-icon {
+    color: rgb(25, 150, 25);
+}
+
+.panel-wrapper .mat-expansion-panel-header-title,
+.panel-wrapper .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.panel-wrapper .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-wrapper .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.menu-item-icon {
+    margin-right: 8px;
+}
+
+.airline-logo {
+    max-width: 44px;
+}

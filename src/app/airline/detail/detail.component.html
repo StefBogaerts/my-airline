@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>
+    <img [src]="airline.logo" style="max-width: 44px;" />
+    {{airline.name}}
+</h1>
+<div mat-dialog-content class="flex-container">
+    <div class="flex-item">
+        <h2>Name</h2>
+        <p [innerHTML]="airline.name"></p>
+    </div>
+
+    <div class="flex-item">
+        <h2>Slogan</h2>
+        <p [innerHTML]="airline.slogan"></p>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onClose()" color="primary">Close</button>
+</div>

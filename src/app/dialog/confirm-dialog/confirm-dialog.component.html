@@ -1,0 +1,6 @@
+<h1 mat-dialog-title [innerHtml]="confirmDialogData.title"></h1>
+<div mat-dialog-content [innerHtml]="confirmDialogData.description"></div>
+<div mat-dialog-actions>
+    <button mat-button (click)="closeDialog(false)" [innerHtml]="confirmDialogData.cancelText"></button>
+    <button mat-raised-button (click)="closeDialog(true)" color="warn" [innerHtml]="confirmDialogData.confirmText"></button>
+</div>
