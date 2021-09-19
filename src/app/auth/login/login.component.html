@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="login()">
     <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" placeholder="john.doe@mail.com">
+        <input matInput autofocus type="email" formControlName="email" placeholder="john.doe@mail.com">
 
         <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
             Please enter a valid email address
